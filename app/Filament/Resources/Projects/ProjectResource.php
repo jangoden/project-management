@@ -45,7 +45,6 @@ class ProjectResource extends Resource
 
     protected static string | \BackedEnum | null $navigationIcon = 'heroicon-o-rectangle-stack';
     protected static string | \UnitEnum | null $navigationGroup = 'Project Management';
-    protected static ?int $navigationSort = 1;
 
     public static function form(Schema $schema): Schema
     {

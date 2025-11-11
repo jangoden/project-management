@@ -2,12 +2,15 @@
 
 namespace App\Filament\Resources\Posts\Tables;
 
+use App\Models\Post;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Actions\EditAction;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
+use Filament\Tables\Columns\ToggleColumn;
+use Filament\Notifications\Notification;
 
 class PostsTable
 {
@@ -22,8 +25,18 @@ class PostsTable
                 Tables\Columns\TextColumn::make('author.name')
                     ->numeric()
                     ->sortable(),
-                Tables\Columns\TextColumn::make('status')
-                    ->searchable(),
+                ToggleColumn::make('status')
+                    ->label('Published')
+                    ->getStateUsing(fn (Post $record): bool => $record->status === 'published')
+                    ->updateStateUsing(function (bool $state, Post $record): void {
+                        $record->status = $state ? 'published' : 'draft';
+                        $record->save();
+
+                        Notification::make()
+                            ->title('Post ' . ($state ? 'published' : 'drafted') . ' successfully!')
+                            ->success()
+                            ->send();
+                    }),
                 Tables\Columns\TextColumn::make('published_at')
                     ->dateTime()
                     ->sortable(),
