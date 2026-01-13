@@ -1,320 +1,51 @@
-# DewaKoding Project Management
-
-🎉 **Now using Filament 4!** 🎉
-
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-1.png)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-1a.png)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-4.jpeg)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-5.jpeg)
-
-A Laravel Filament 4 application for managing projects with ticket management and status tracking.
-
-## Features
-
-- Project management with ticket prefix configuration
-- Role-based access control (using Filament Shield)
-- Team member management with role assignments
-- Customizable ticket statuses with color coding
-- Ticket management with assignees and due dates
-- Unique ticket identifiers
-- Epic management for organizing tickets into larger initiatives
-- Comment system for tickets to facilitate team discussions
-- Kanban board view for visualizing ticket progress
-- Assign ticket to multi users
-- User contributions chart
-- Timeline view
-- Export ticket data to CSV
-- Leaderboard for team member performance
-- External dashboard view (Client Portal)
-
-## Requirements
-
-- PHP > 8.2+
-- Laravel 12
-- Composer
-- Node.js & npm
-
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-2.jpeg)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-6.jpeg)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-7.jpeg)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-8.jpeg)
-![image](https://raw.githubusercontent.com/SeptiawanAjiP/dewakoding-project-management/refs/heads/main/images/image-9.jpeg)
-
-
-## Installation
-
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/SeptiawanAjiP/dewakoding-project-management
-   cd dewakoding-project-management
-   ```
-
-2. Install dependencies:
-   ```bash
-   composer install
-   npm install
-   ```
-
-3. Set up environment:
-   ```bash
-   cp .env.example .env
-   php artisan key:generate
-   ```
-
-4. Configure database in `.env` file:
-   ```env
-   DB_CONNECTION=mysql
-   DB_HOST=127.0.0.1
-   DB_PORT=3306
-   DB_DATABASE=dewakoding_project_management
-   DB_USERNAME=root
-   DB_PASSWORD=
-   ```
+# Modern Project Management System Analysis
 
-5. Run migrations:
-   ```bash
-   php artisan migrate
-   ```
+This system is an enterprise-grade project management platform designed to facilitate agile, transparent, and high-performance team collaboration. Built on a foundation of cutting-edge technology, the application offers more than just basic task management; it provides automated workflows, granular security, and deep data visualization.
 
-6. Create storage link for file uploads:
-   ```bash
-   php artisan storage:link
-   ```
+## 1. Technology Foundation & Architecture
 
-7. Create a Filament admin user:
-   ```bash
-   php artisan make:filament-user
-   ```
+The system is engineered using **Laravel 12** as its core framework, ensuring enterprise-level security, scalability, and high performance with support for PHP 8.2+.
 
-8. Activate Role & Permission:
-   ```bash
-   php artisan shield:setup
-   php artisan shield:install
-   php artisan shield:super-admin
-   ```
+**Admin Interface:** Utilizes **Filament 4** to deliver a responsive, aesthetic, and highly functional user experience (UX) for the administration panel without compromising code flexibility.
 
-9. Compile assets:
-   ```bash
-   npm run dev
-   ```
+**Granular Access Control:** Data security is managed through a dynamic **Role-Based Access Control (RBAC)** implementation. This allows for specific permission settings for every role (e.g., distinguishing between Super Admins and standard Team Members).
 
-10. Start the development server:
-    ```bash
-    php artisan serve
-    ```
+**High Performance:** The system is optimized to run with **Laravel Octane (FrankenPHP)**, drastically improving application response times for heavy-usage environments.
 
+## 2. Intelligent Project Management
 
-## Usage
+The project module is designed for flexibility and automation, reducing administrative overhead:
 
-1. Access the Filament admin panel at `http://localhost:8000/admin`
-2. Log in with the Filament user credentials you created
-3. Create a new project with custom ticket prefix
-4. Add team members to the project
-5. Create and customize ticket statuses
-6. Add tickets and assign to team members
+**Workflow Automation:** When a new project is initiated, the system includes smart options to automatically generate standard ticket statuses (such as Backlog, To Do, In Progress, Review, Done). This accelerates the project initiation process, eliminating repetitive manual configuration.
 
-## ⚠️ Upgrade from Filament 3 to Filament 4
+**Unique Identification:** Every project features a configurable **Ticket Prefix** (e.g., "DEV", "MKT"). This is utilized to generate human-readable, unique ticket IDs, ensuring professional tracking.
 
-**Important Notice**: This project has been upgraded to Filament 4. If you're upgrading from a previous version that used Filament 3, please follow these steps carefully:
+**Data Scoping & Isolation:** The system implements strict query-level security. Standard users can only view and access projects where they are explicitly registered as members, while administrators maintain full visibility. This ensures confidentiality between different teams or departments.
 
-### Prerequisites
-1. **Backup your database** before starting the upgrade process
-2. Make sure you have the latest version of the codebase
+## 3. Interactive & Real-time Kanban Board
 
-### Filament Shield Upgrade Steps
-The upgrade process for Filament Shield requires special attention. Please read the official upgrade guide first:
-**[Filament Shield Upgrade Guide](https://github.com/bezhanSalleh/filament-shield?tab=readme-ov-file#upgrade)**
+The core operational feature is a dynamic, high-performance Kanban Board:
 
-### Required Commands
-After updating your dependencies and following the official guide, run the following command to regenerate Shield policies and permissions:
+**Seamless Interaction:** Powered by **Livewire** technology, the board supports smooth drag-and-drop interactions. Ticket movements between status columns are processed in real-time with server-side permission validation to prevent unauthorized changes.
 
-```bash
-php artisan shield:generate --all --option=policies
-```
+**Multidimensional Filtering & Sorting:** Users can filter views based on specific team members or apply custom sorting rules within each status column (sorting by priority, due date, or creation date), allowing managers to focus immediately on urgent tasks.
 
-**Note**: Some upgrade steps related to filament-shield have already been implemented in the codebase. The command above will ensure all policies and permissions are properly generated for Filament 4 compatibility.
+**Data Export:** For external reporting needs, a comprehensive Excel export feature is available, allowing for granular data extraction and further offline analysis.
 
-### Post-Upgrade Verification
-1. Clear all caches: `php artisan optimize:clear`
-2. Test your role-based permissions
-3. Verify that all resources, pages, and widgets are accessible
-4. Check that user roles and permissions are working correctly
+## 4. Ticketing System & Issue Tracking
 
+The ticket entity is designed with deep business logic to ensure accountability:
 
-## Main Features
+**Smart UUID Generation:** Instead of simple numeric IDs, the system automatically generates professional unique codes (e.g., WEB-X7Z9) that combine project prefixes with random strings, providing a distinct identity for every task.
 
-### Board View
+**Complete Audit Trail:** Transparency is maintained through a robust **History Log**. Every status change is automatically recorded in the database, creating a clear audit trail of who moved a ticket and exactly when it happened.
 
-The Board View offers a familiar kanban-style interface for ticket management:
+**Rich Relationships:** Tickets are not standalone entities; they link to **Epics** (for larger initiatives) and **Priorities**, and support **Multi-assignees**, allowing a single task to be collaboratively executed by multiple team members.
 
-- Drag-and-drop tickets between status columns
-- Customize columns to match your team's process
-- Quick-edit functionality for updating tickets directly from the board
+## 5. Productivity Enhancers
 
-### Timeline View
+**Social Login Integration:** Supports **Google OAuth** authentication, streamlining the login process and improving security by removing the need for additional passwords.
 
-The Timeline feature provides a chronological perspective of your project work:
+**Asynchronous Notifications:** Utilizes a **Queue Worker** system to handle email notifications in the background. This architecture ensures the user interface remains snappy and responsive, even when the system is broadcasting hundreds of notifications.
 
-- Visualize project roadmap with start and end dates
-- Track milestone completion across time periods
-- Easily identify scheduling conflicts or resource bottlenecks
-
-### Epic Management
-
-Epics help organize related tickets into larger initiatives:
-
-- Group tickets by feature, release, or business objective
-- Track progress across multiple tickets
-- Set start and end dates for planning purposes
-- Visualize which tickets belong to which initiatives
-
-### Ticket Comments
-
-The comment system enhances team collaboration:
-
-- Team members can discuss tickets directly in the application
-- All comments are timestamped and attributed to users
-- Supports rich text formatting for improved readability
-- Enables better context sharing and decision documentation
-
-## Google Login Integration
-
-This application supports Google OAuth login. Here's how to configure it:
-
-### 1. Getting Google OAuth Credentials
-
-1. **Open Google Cloud Console**
-   - Visit [Google Cloud Console](https://console.cloud.google.com/)
-   - Sign in with your Google account
-
-2. **Create or Select a Project**
-   - Create a new project or select an existing one
-   - Make sure the project is active
-
-3. **Enable Google+ API**
-   - In the sidebar, select "APIs & Services" > "Library"
-   - Search for "Google+ API" and click "Enable"
-
-4. **Create OAuth 2.0 Credentials**
-   - In the sidebar, select "APIs & Services" > "Credentials"
-   - Click "Create Credentials" > "OAuth 2.0 Client IDs"
-   - Select "Web application" as the application type
-   - Enter application name (example: "DewaKoding Project Management")
-   - In "Authorized redirect URIs", add:
-     ```
-     http://localhost:8000/auth/google/callback
-     https://yourdomain.com/auth/google/callback
-     ```
-   - Click "Create"
-
-5. **Copy Client ID and Client Secret**
-   - After creation, you will get Client ID and Client Secret
-   - Copy both values for application configuration
-
-### 2. Environment Configuration
-
-Add Google OAuth configuration in `.env` file:
-
-```env
-GOOGLE_CLIENT_ID=your_google_client_id_here
-GOOGLE_CLIENT_SECRET=your_google_client_secret_here
-```
-
-Replace `your_google_client_id_here` and `your_google_client_secret_here` with the values you obtained from Google Cloud Console.
-
-### 3. How to Use
-
-1. Open the application login page at `/admin/login`
-2. Click the "Continue with Google" button
-3. Sign in with your Google account
-4. The application will automatically create a new account or log in to an existing account
-
-**Note:** If the Google email is already registered in the system, the application will link the Google account with the existing account.
-
-## Queue & Email Notifications
-
-This application uses a queue system to send email notifications asynchronously. Here's how to configure and run it:
-
-### 1. Email Configuration
-
-Configure email in `.env` file:
-
-```env
-# For development (log emails to file)
-MAIL_MAILER=log
-
-# For production (SMTP)
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.gmail.com
-MAIL_PORT=587
-MAIL_USERNAME=your-email@gmail.com
-MAIL_PASSWORD=your-app-password
-MAIL_ENCRYPTION=tls
-MAIL_FROM_ADDRESS=your-email@gmail.com
-MAIL_FROM_NAME="DewaKoding Project Management"
-```
-
-### 2. Queue Configuration
-
-Ensure queue configuration in `.env`:
-
-```env
-QUEUE_CONNECTION=database
-```
-
-### 3. Running Queue Worker
-
-To process email notification queues, run the following commands:
-
-#### Development Mode
-```bash
-php artisan queue:work
-```
-
-#### Production Mode (with automatic restart)
-```bash
-php artisan queue:work --daemon --tries=3 --timeout=60
-```
-
-#### Using Supervisor (Recommended for Production)
-
-1. Install supervisor:
-   ```bash
-   sudo apt-get install supervisor
-   ```
-
-2. Create configuration file `/etc/supervisor/conf.d/laravel-worker.conf`:
-   ```ini
-   [program:laravel-worker]
-   process_name=%(program_name)s_%(process_num)02d
-   command=php /path/to/your/project/artisan queue:work --sleep=3 --tries=3 --max-time=3600
-   autostart=true
-   autorestart=true
-   stopasgroup=true
-   killasgroup=true
-   user=www-data
-   numprocs=8
-   redirect_stderr=true
-   stdout_logfile=/path/to/your/project/storage/logs/worker.log
-   stopwaitsecs=3600
-   ```
-
-3. Restart supervisor:
-   ```bash
-   sudo supervisorctl reread
-   sudo supervisorctl update
-   sudo supervisorctl start laravel-worker:*
-   ```
-
-### 4. Email Notification Types
-
-The application sends email notifications for:
-- **Project Assignment**: When a user is added to a project
-- **Comment Notifications**: When there are new comments on tickets
-- **Ticket Updates**: When ticket status changes
-
-**Note:** Make sure the queue worker is always running to process email notifications. Without the queue worker, emails will not be sent.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+**Roadmap Visualization:** Beyond the Kanban view, the system offers **Timeline and Gantt Chart** visualizations to monitor project schedules and task dependencies over specific timeframes.
